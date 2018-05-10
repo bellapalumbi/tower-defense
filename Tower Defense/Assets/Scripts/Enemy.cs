@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 
 	public float speed = 0.04f;
-	void Start () {
-		
-	}
+	public int hitStrength;
 	
 	// Update is called once per frame
 	void Update () {
