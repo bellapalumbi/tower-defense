@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class MySwordsmanHit : MonoBehaviour {
 
 	// Use this for initialization
-
-	public float speed = 0.04f;
-
-	public int hitPoints = 15;
-	public int hitStrength;
+	void Start () {
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(speed,0,0);
+		
 	}
 }
