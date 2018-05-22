@@ -9,12 +9,24 @@ public class DragDrop : MonoBehaviour {
 	private float myY;
 	private bool canbeDragDropped = true;
 
-	private bool hasHitElement = false;
+	public bool hasSnapped;
+
+	public GameObject EnergyManager;
+
+	EnergyManager EnergyScript;
+
+
+	public int myCost;
+
+
 
 
 	void Start() {
 		currentPos = gameObject.transform.position;
-		print(currentPos);
+		//print(currentPos);
+		hasSnapped = false;
+		myCost = 4;
+		EnergyScript = EnergyManager.GetComponent<EnergyManager>();
 	}
 	void OnMouseDown () {
 		if (canbeDragDropped) {
@@ -31,19 +43,33 @@ public class DragDrop : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		if (gameObject.transform.position.y > 2.5f) { 
-			transform.position = new Vector3 (currentPos.x, currentPos.y, -0.5f); 
-			print("currentPos is " + currentPos);
-		} else {
-			ChooseRow();
-			print("has called ChooseRow");
-			gameObject.GetComponent<MyMovement>().enabled = true;
+		
+		//stores current energy value in currentEnergy
+		print("From DragDrop: energy is " + EnergyScript.energy);
+		if (gameObject.transform.position.y < 2.5f && EnergyScript.energy >= myCost) { 
+			//if it's been placed on the field and user has the EP to place it
+			if (gameObject.tag == "Defender") {
+				//if the defender is the kind that needs to move, and be dropped onto a "melee" row
+				ChooseRow();
+				gameObject.GetComponent<MyMovement>().enabled = true;
+			} else if (gameObject.tag == "AoE") {
+				//put code for calling RainDamange function or whatever here!!
+			}
 			canbeDragDropped = false;
+			//makes it so that it can no longer be picked up
+			EnergyScript.energy -= myCost;
+			print("From DragDrop: energy is " + EnergyScript.energy);
+		}
+		else {
+			transform.position = new Vector3 (currentPos.x, currentPos.y, -0.5f); 
+			//moves back to original position in cards
 		}
 	}
 
+
 	void SnapTo (float row) {
 		transform.position = new Vector3 (transform.position.x, row, -0.5f); 
+		hasSnapped = true;
 	}
 
 	void ChooseRow() {
@@ -52,9 +78,9 @@ public class DragDrop : MonoBehaviour {
 			SnapTo(1.35f);
 		} else if (myY < 0.5f && myY > -2) {
 			SnapTo(-0.62f);
-		} else if (myY < -2 && myY > -4.5f) {
+		} else if (myY < -2 && myY > -4f) {
 			SnapTo(-2.34f);
-		} else if (myY < -4.5f) {
+		} else if (myY < -4f) {
 			SnapTo(-4);
 		}
 	}

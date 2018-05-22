@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
 
 	public float speed = 0.04f;
 
-	public int hitPoints = 15;
+	public int hitPoints = 14;
 	public int hitStrength;
 	
 	// Update is called once per frame

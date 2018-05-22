@@ -29,7 +29,7 @@ public class EnemyGenerator : MonoBehaviour {
 
 	float PickRow(){
 		row = (Mathf.Round(Random.Range(0.5f,4.49f)));
-		print(row);
+		//print(row);
 		if (row == 1) {
 			row = 1.35f;
 		}
