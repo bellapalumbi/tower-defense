@@ -13,17 +13,16 @@ public class EnergyManager : MonoBehaviour {
 
 	void Start() {
 		//energy = 0;
-		StartCoroutine(IncreaseEnergy(energy));
+		StartCoroutine(IncreaseEnergy());
 	}
 
 	
 
-	IEnumerator IncreaseEnergy (int coEnergy) {
-		while (coEnergy < 10) {
-			coEnergy += 1;
+	IEnumerator IncreaseEnergy () {
+		while (energy < 10) {
+			energy += 1;
 			print("energy is " + energy);
-			energyText.text = "Energy Points: " + coEnergy;
-			energy = coEnergy;
+			energyText.text = "Energy Points: " + energy;
 			yield return new WaitForSeconds(1.5f);
 		}
 	}

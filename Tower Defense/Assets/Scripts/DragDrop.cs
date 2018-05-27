@@ -18,6 +18,8 @@ public class DragDrop : MonoBehaviour {
 
 	public int myCost;
 
+	public GameObject MySwordsmanPrefab;
+
 
 
 
@@ -26,7 +28,10 @@ public class DragDrop : MonoBehaviour {
 		//print(currentPos);
 		hasSnapped = false;
 		myCost = 4;
+		EnergyManager = GameObject.Find("EnergyManager");
 		EnergyScript = EnergyManager.GetComponent<EnergyManager>();
+		gameObject.GetComponent<MyMovement>().enabled = false;
+
 	}
 	void OnMouseDown () {
 		if (canbeDragDropped) {
@@ -52,6 +57,7 @@ public class DragDrop : MonoBehaviour {
 				//if the defender is the kind that needs to move, and be dropped onto a "melee" row
 				ChooseRow();
 				gameObject.GetComponent<MyMovement>().enabled = true;
+				Instantiate(MySwordsmanPrefab, new Vector3 (currentPos.x, currentPos.y, -0.8f), Quaternion.identity);
 			} else if (gameObject.tag == "AoE") {
 				//put code for calling RainDamange function or whatever here!!
 			}

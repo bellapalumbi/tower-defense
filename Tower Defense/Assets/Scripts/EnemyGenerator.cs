@@ -13,8 +13,11 @@ public class EnemyGenerator : MonoBehaviour {
 	void Start () {
 		SpawnSwordsman();
 		Invoke("SpawnSwordsman", 3);
-		Invoke("SpawnSwordsman", 4);
-		Invoke("SpawnSwordsman", 7);
+		Invoke("SpawnSwordsman", 5);
+		Invoke("SpawnSwordsman", 8);
+		Invoke("SpawnSwordsman", 11);
+		Invoke("SpawnSwordsman", 15);
+		Invoke("SpawnSwordsman", 18);
 	}
 	
 	// Update is called once per frame
@@ -24,7 +27,7 @@ public class EnemyGenerator : MonoBehaviour {
 
 	public void SpawnSwordsman () {
 		PickRow();
-		Instantiate(swordsman,new Vector3 (-9, row, -0.5f),Quaternion.identity);
+		Instantiate(swordsman,new Vector3 (-12, row, -0.5f), Quaternion.identity);
 	}
 
 	float PickRow(){
